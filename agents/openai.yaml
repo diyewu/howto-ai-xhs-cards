@@ -1,0 +1,6 @@
+interface:
+  display_name: "Howto AI XHS Cards"
+  short_description: "Generate practical AI how-to Xiaohongshu cards"
+  default_prompt: "Use $howto-ai-xhs-cards to turn this AI learning material into a complete Xiaohongshu card set."
+policy:
+  allow_implicit_invocation: true
