@@ -1,6 +1,6 @@
 ---
 name: howto-ai-xhs-cards
-description: Generate, revise, or review practical Xiaohongshu card sets for AI how-to, AI learning, workflow, prompt, tool-use, or case-study content. Use when Codex needs to turn Markdown, articles, notes, transcripts, or knowledge-base material into mobile-readable 1080 x 1440 HTML card pages, draft card copy before layout, improve card density, export-ready structure, titles, captions, or batch production tables. Do not use for unrelated social posts unless the user asks for Xiaohongshu-style card content.
+description: Generate, revise, export, or review practical Xiaohongshu card sets for AI how-to, AI learning, workflow, prompt, tool-use, or case-study content. Use when Codex needs to turn Markdown, articles, notes, transcripts, or knowledge-base material into mobile-readable 1080 x 1440 HTML card pages, draft card copy before layout, use the bundled HTML template, export PNG cards, validate dimensions, build contact sheets and zip files, improve card density, titles, captions, or batch production tables. Do not use for unrelated social posts unless the user asks for Xiaohongshu-style card content.
 ---
 
 # Howto AI Xiaohongshu Cards
@@ -10,6 +10,12 @@ description: Generate, revise, or review practical Xiaohongshu card sets for AI 
 Turn AI-related material into complete, useful Xiaohongshu card sets. Prefer practical explanation over summaries, slogans, or generic advice.
 
 Use a clear, restrained, engineered, trustworthy style by default. To change the visual or editorial style, read `references/style-customization.md`.
+
+Bundled resources:
+
+- `assets/template-xhs-cards.html`: starter HTML with fixed `1080 x 1440` `.card` elements.
+- `scripts/export-cards.mjs`: export `.card` elements to PNG, build `contact-sheet.png`, zip PNGs, and write `export-report.json`.
+- `scripts/validate-cards.mjs`: validate rendered card size and PNG dimensions.
 
 ## Inputs
 
@@ -87,19 +93,27 @@ Avoid:
 When generating files:
 
 - Build one HTML file at `outputs/{topic}-xhs/{topic}-xhs.html`, unless the user specifies another path.
+- If the project has no card template, copy and adapt `assets/template-xhs-cards.html`.
 - Render each card as one `.card` element.
 - Ensure every `.card` is exactly `1080 x 1440`.
 - Use HTML/CSS for layout.
 - Do not call AI image generation unless the user explicitly asks for it.
 - Use existing local illustrations, icons, SVG, CSS shapes, or simple diagrams when available.
-- Run the project's export command if one exists; otherwise tell the user the HTML is ready and which export command is missing.
+- Use the bundled export script unless the current project already has a better export command.
 - Validate PNG dimensions and inspect for overflow, overlap, and over-dense text.
 
-If the project provides commands, prefer:
+From the skill directory, install tooling once:
 
 ```bash
-npm run export:cards -- outputs/{topic}-xhs/{topic}-xhs.html
-npm run validate:cards -- outputs/{topic}-xhs/{topic}-xhs.html --png-dir outputs/{topic}-xhs/png
+npm install
+npx playwright install chromium
+```
+
+Then export and validate from the target project directory. Resolve `<skill-dir>` to this skill folder:
+
+```bash
+node <skill-dir>/scripts/export-cards.mjs outputs/{topic}-xhs/{topic}-xhs.html
+node <skill-dir>/scripts/validate-cards.mjs outputs/{topic}-xhs/{topic}-xhs.html --png-dir outputs/{topic}-xhs/png
 ```
 
 ## Production Table

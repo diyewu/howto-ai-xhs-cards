@@ -28,6 +28,9 @@ This is a generic Codex skill for turning AI how-to material, tool notes, prompt
 ```bash
 mkdir -p ~/.codex/skills
 git clone https://github.com/diyewu/howto-ai-xhs-cards.git ~/.codex/skills/howto-ai-xhs-cards
+cd ~/.codex/skills/howto-ai-xhs-cards
+npm install
+npx playwright install chromium
 ```
 
 如果已经安装过：
@@ -35,6 +38,7 @@ git clone https://github.com/diyewu/howto-ai-xhs-cards.git ~/.codex/skills/howto
 ```bash
 cd ~/.codex/skills/howto-ai-xhs-cards
 git pull
+npm install
 ```
 
 ### 使用方式
@@ -73,11 +77,26 @@ Use $howto-ai-xhs-cards，根据这份文章生成 HTML 卡片页，并导出 PN
 
 ### 默认产物
 
-如果项目里有导出命令，skill 会优先使用：
+这个 skill 自带 HTML 模板和导出工具：
+
+```text
+assets/template-xhs-cards.html
+scripts/export-cards.mjs
+scripts/validate-cards.mjs
+```
+
+如果你的项目没有模板，可以先复制内置模板：
 
 ```bash
-npm run export:cards -- outputs/{topic}-xhs/{topic}-xhs.html
-npm run validate:cards -- outputs/{topic}-xhs/{topic}-xhs.html --png-dir outputs/{topic}-xhs/png
+mkdir -p outputs/demo-xhs
+cp ~/.codex/skills/howto-ai-xhs-cards/assets/template-xhs-cards.html outputs/demo-xhs/demo-xhs.html
+```
+
+导出和校验：
+
+```bash
+node ~/.codex/skills/howto-ai-xhs-cards/scripts/export-cards.mjs outputs/{topic}-xhs/{topic}-xhs.html
+node ~/.codex/skills/howto-ai-xhs-cards/scripts/validate-cards.mjs outputs/{topic}-xhs/{topic}-xhs.html --png-dir outputs/{topic}-xhs/png
 ```
 
 常见输出：
@@ -90,7 +109,7 @@ outputs/{topic}-xhs/{topic}-xhs-png.zip
 outputs/{topic}-xhs/export-report.json
 ```
 
-如果你的项目没有这些命令，agent 会只生成 HTML，并说明缺少哪条导出命令。
+导出脚本会自动删除旧 `png/`，重新截图，生成总览图、zip 和 report。
 
 ### 怎么修改风格
 
@@ -149,6 +168,9 @@ Clone the repository into your Codex skills directory:
 ```bash
 mkdir -p ~/.codex/skills
 git clone https://github.com/diyewu/howto-ai-xhs-cards.git ~/.codex/skills/howto-ai-xhs-cards
+cd ~/.codex/skills/howto-ai-xhs-cards
+npm install
+npx playwright install chromium
 ```
 
 To update:
@@ -156,6 +178,7 @@ To update:
 ```bash
 cd ~/.codex/skills/howto-ai-xhs-cards
 git pull
+npm install
 ```
 
 ### Usage
@@ -194,11 +217,26 @@ PNG export needed:
 
 ### Expected Output
 
-When the current project has export commands, the skill prefers:
+The skill includes a starter template and export tools:
+
+```text
+assets/template-xhs-cards.html
+scripts/export-cards.mjs
+scripts/validate-cards.mjs
+```
+
+If your project does not have a template yet, copy the bundled one:
 
 ```bash
-npm run export:cards -- outputs/{topic}-xhs/{topic}-xhs.html
-npm run validate:cards -- outputs/{topic}-xhs/{topic}-xhs.html --png-dir outputs/{topic}-xhs/png
+mkdir -p outputs/demo-xhs
+cp ~/.codex/skills/howto-ai-xhs-cards/assets/template-xhs-cards.html outputs/demo-xhs/demo-xhs.html
+```
+
+Export and validate:
+
+```bash
+node ~/.codex/skills/howto-ai-xhs-cards/scripts/export-cards.mjs outputs/{topic}-xhs/{topic}-xhs.html
+node ~/.codex/skills/howto-ai-xhs-cards/scripts/validate-cards.mjs outputs/{topic}-xhs/{topic}-xhs.html --png-dir outputs/{topic}-xhs/png
 ```
 
 Common artifacts:
@@ -211,7 +249,7 @@ outputs/{topic}-xhs/{topic}-xhs-png.zip
 outputs/{topic}-xhs/export-report.json
 ```
 
-If the project does not provide export commands, Codex should generate the HTML and tell you which export command is missing.
+The export script removes the old `png/` folder, screenshots each `.card`, builds the contact sheet, zips the PNG files, and writes the report.
 
 ### Customizing The Style
 

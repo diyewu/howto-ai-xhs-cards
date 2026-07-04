@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>howto AI XHS cards template</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --accent: #22d3ee;
+      --success: #34d399;
+      --warning: #f59e0b;
+      --danger: #dc2626;
+      --text: #253044;
+      --title: #172033;
+      --muted: #65738a;
+      --page-bg: #f7fbff;
+      --card-bg: #ffffff;
+      --border: #dbe7f3;
+      --soft-blue: #eaf4ff;
+      --soft-cyan: #dcfbff;
+      --soft-warn: #fff7e6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #e8eef7;
+      font-family: "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+    }
+
+    .deck {
+      display: grid;
+      gap: 32px;
+      padding: 32px;
+    }
+
+    .card {
+      position: relative;
+      width: 1080px;
+      height: 1440px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.055) 1px, transparent 1px),
+        radial-gradient(circle at 78% 12%, rgba(34, 211, 238, 0.22), transparent 210px),
+        linear-gradient(180deg, var(--page-bg), #ffffff 58%, #f2fbff);
+      background-size: 72px 72px, 72px 72px, auto, auto;
+      border-radius: 0;
+      padding: 72px;
+    }
+
+    .brand,
+    .series {
+      position: absolute;
+      top: 72px;
+      z-index: 3;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand {
+      left: 72px;
+      color: var(--title);
+      font-size: 28px;
+    }
+
+    .series {
+      right: 72px;
+      padding: 12px 22px;
+      border: 2px solid rgba(37, 99, 235, 0.45);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 22px;
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 2;
+      margin-top: 176px;
+      color: var(--title);
+      font-size: 78px;
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+    }
+
+    .cover-title .accent {
+      display: block;
+      color: var(--primary);
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 10px 18px;
+      border-radius: 18px;
+      background: var(--soft-blue);
+      color: var(--primary);
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      position: relative;
+      z-index: 2;
+      width: 720px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 30px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .promise {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      margin-top: 28px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+      box-shadow: 0 18px 36px rgba(37, 99, 235, 0.18);
+    }
+
+    .hero-visual {
+      position: absolute;
+      right: 84px;
+      bottom: 210px;
+      width: 390px;
+      height: 390px;
+      border-radius: 44% 56% 48% 52%;
+      background:
+        radial-gradient(circle at 32% 26%, #fff 0 9%, transparent 10%),
+        radial-gradient(circle at 66% 31%, #fff 0 7%, transparent 8%),
+        linear-gradient(135deg, rgba(34, 211, 238, 0.92), rgba(37, 99, 235, 0.82));
+      box-shadow: 0 30px 70px rgba(37, 99, 235, 0.2);
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      border-radius: 999px;
+    }
+
+    .hero-visual::before {
+      left: 76px;
+      right: 76px;
+      bottom: 92px;
+      height: 18px;
+      transform: rotate(-3deg);
+    }
+
+    .hero-visual::after {
+      left: -56px;
+      bottom: 78px;
+      width: 170px;
+      height: 22px;
+      background: var(--warning);
+      transform: rotate(19deg);
+    }
+
+    .cover-steps {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      bottom: 128px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding-top: 34px;
+      border-top: 2px solid var(--border);
+    }
+
+    .cover-step,
+    .panel,
+    .note {
+      background: rgba(255, 255, 255, 0.88);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .cover-step {
+      padding: 22px;
+      min-height: 126px;
+    }
+
+    .cover-step strong,
+    .panel strong {
+      display: block;
+      color: var(--primary);
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .cover-step span,
+    .panel span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .page-title {
+      margin-top: 156px;
+      color: var(--title);
+      font-size: 50px;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .page-title .accent {
+      color: var(--primary);
+    }
+
+    .lead {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 28px;
+      line-height: 1.48;
+      font-weight: 700;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .panel {
+      padding: 28px;
+      min-height: 156px;
+    }
+
+    .note {
+      margin-top: 36px;
+      padding: 28px 32px;
+      border-left: 9px solid var(--warning);
+      background: var(--soft-warn);
+      color: var(--title);
+      font-size: 28px;
+      line-height: 1.42;
+      font-weight: 850;
+    }
+
+    .template-box {
+      margin-top: 38px;
+      padding: 34px;
+      border-radius: 22px;
+      background: #172033;
+      color: #eaf4ff;
+      font-size: 26px;
+      line-height: 1.55;
+      font-weight: 700;
+      white-space: pre-line;
+    }
+
+    .footer {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      bottom: 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 2px solid var(--border);
+      color: var(--muted);
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .page-no {
+      color: var(--primary);
+      font-size: 30px;
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="card cover">
+      <div class="brand">Brand</div>
+      <div class="series">howto用好AI</div>
+      <div class="cover-title">
+        <div class="label">Prompt Basics</div>
+        <div>别让 AI</div>
+        <span class="accent">猜你要什么</span>
+      </div>
+      <div class="subtitle">把任务、对象、格式、标准说清楚，输出才会稳定。</div>
+      <div class="promise">可复制，但要改成你的真实场景</div>
+      <div class="hero-visual" aria-hidden="true"></div>
+      <div class="cover-steps">
+        <div class="cover-step"><strong>任务</strong><span>要 AI 做什么</span></div>
+        <div class="cover-step"><strong>对象</strong><span>给谁使用结果</span></div>
+        <div class="cover-step"><strong>格式</strong><span>输出怎么交付</span></div>
+        <div class="cover-step"><strong>标准</strong><span>怎样算可用</span></div>
+      </div>
+      <div class="footer"><span>示例模板</span><span class="page-no">01 / 03</span></div>
+    </section>
+
+    <section class="card">
+      <div class="brand">Brand</div>
+      <div class="series">howto用好AI</div>
+      <h1 class="page-title">先写<span class="accent">验收标准</span>，再写提示词</h1>
+      <p class="lead">很多提示词失败，不是模型听不懂，而是你没有告诉它什么结果能直接使用。</p>
+      <div class="grid-2">
+        <div class="panel"><strong>不要只说</strong><span>帮我写一篇小红书文案。</span></div>
+        <div class="panel"><strong>要补上</strong><span>读者是谁、字数范围、语气、结构、不能写什么。</span></div>
+        <div class="panel"><strong>输出格式</strong><span>标题 5 个，正文 1 版，标签 8 个。</span></div>
+        <div class="panel"><strong>可用标准</strong><span>读者看完知道下一步怎么做。</span></div>
+      </div>
+      <div class="note">提示词不是咒语，是任务说明书。说明书越具体，返工越少。</div>
+      <div class="footer"><span>方法说明</span><span class="page-no">02 / 03</span></div>
+    </section>
+
+    <section class="card">
+      <div class="brand">Brand</div>
+      <div class="series">howto用好AI</div>
+      <h1 class="page-title">复制这个<span class="accent">填空模板</span></h1>
+      <p class="lead">把括号里的内容换成你的真实任务。不要整段照抄。</p>
+      <div class="template-box">你是一名【角色】。
+请帮我完成【任务】。
+目标读者是【对象】。
+必须包含【关键内容】。
+输出格式为【格式】。
+判断结果可用的标准是【标准】。
+不要出现【禁区】。</div>
+      <div class="note">如果 AI 第一次答偏了，不要只说“不对”。补一条标准，再让它重写。</div>
+      <div class="footer"><span>可复制模板</span><span class="page-no">03 / 03</span></div>
+    </section>
+  </main>
+</body>
+</html>
