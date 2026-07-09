@@ -117,6 +117,7 @@ outputs/{topic}-xhs/export-report.json
 
 ```text
 references/style-customization.md
+references/card-fit-and-layout.md
 ```
 
 最少需要改这些值：
@@ -135,6 +136,26 @@ illustration_strategy: 插图来源或图形风格
 ```
 
 默认风格是清楚、克制、工程化、可信。你可以把它改成更活泼、更专业、更杂志化，或者贴合自己的品牌视觉。
+
+### 如何决定张数和版式
+
+先让 agent 做一次密度和骨架判断：
+
+```text
+Use $howto-ai-xhs-cards，先不要写 HTML。请先给出：
+1. 建议卡片张数
+2. 每页信息密度：低 / 中 / 高 / 超载
+3. 每页骨架：layout-hero / layout-framework / layout-compare / layout-template / layout-checklist
+4. 每页标题、正文和主模块内容
+```
+
+判断规则在：
+
+```text
+references/card-fit-and-layout.md
+```
+
+如果一页太空，先换成更强的标题、图形锚点或流程结构；如果一页太挤，先拆页，不要缩小字号硬塞。
 
 ### 内容原则
 
@@ -257,6 +278,7 @@ Read:
 
 ```text
 references/style-customization.md
+references/card-fit-and-layout.md
 ```
 
 Set at least:
@@ -275,6 +297,26 @@ illustration_strategy: illustration or diagram style
 ```
 
 The default style is clear, restrained, engineered, and trustworthy. You can adapt it to be more playful, more professional, more magazine-like, or closer to your own brand system.
+
+### Choosing Card Count And Layout
+
+Ask the agent to plan density and skeletons before HTML:
+
+```text
+Use $howto-ai-xhs-cards. Do not write HTML yet. First provide:
+1. recommended card count
+2. each card's density: low / medium / high / over capacity
+3. each card's skeleton: layout-hero / layout-framework / layout-compare / layout-template / layout-checklist
+4. each card's title, body copy, and main module content
+```
+
+Rules live in:
+
+```text
+references/card-fit-and-layout.md
+```
+
+If a page is empty, use a stronger title, visual anchor, or flow structure. If a page is crowded, split it instead of shrinking body text.
 
 ### Content Principles
 

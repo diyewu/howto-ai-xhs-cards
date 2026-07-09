@@ -249,6 +249,10 @@
       min-height: 156px;
     }
 
+    .panel.primary {
+      min-height: 330px;
+    }
+
     .note {
       margin-top: 36px;
       padding: 28px 32px;
@@ -270,6 +274,74 @@
       line-height: 1.55;
       font-weight: 700;
       white-space: pre-line;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 18px;
+      margin-top: 38px;
+    }
+
+    .check {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 24px 28px;
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--title);
+      font-size: 25px;
+      line-height: 1.38;
+      font-weight: 800;
+    }
+
+    .check b {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 22px;
+    }
+
+    .layout-framework .grid-2 {
+      grid-template-columns: 1.12fr 0.88fr;
+    }
+
+    .layout-framework .panel.primary {
+      grid-row: span 2;
+    }
+
+    .layout-framework .panel.primary span {
+      font-size: 23px;
+      line-height: 1.45;
+    }
+
+    .layout-compare .grid-2 {
+      gap: 22px;
+    }
+
+    .layout-compare .panel.bad {
+      border-color: #fecaca;
+      background: #fff7f7;
+    }
+
+    .layout-compare .panel.good {
+      border-color: #bfdbfe;
+      background: #f0f7ff;
+    }
+
+    .layout-template .template-box {
+      margin-top: 34px;
+      min-height: 420px;
+    }
+
+    .layout-checklist .note {
+      margin-top: 30px;
     }
 
     .footer {
@@ -313,25 +385,39 @@
         <div class="cover-step"><strong>格式</strong><span>输出怎么交付</span></div>
         <div class="cover-step"><strong>标准</strong><span>怎样算可用</span></div>
       </div>
-      <div class="footer"><span>示例模板</span><span class="page-no">01 / 03</span></div>
+      <div class="footer"><span>示例模板</span><span class="page-no">01 / 05</span></div>
     </section>
 
-    <section class="card">
+    <section class="card layout-framework">
       <div class="brand">Brand</div>
       <div class="series">howto用好AI</div>
       <h1 class="page-title">先写<span class="accent">验收标准</span>，再写提示词</h1>
       <p class="lead">很多提示词失败，不是模型听不懂，而是你没有告诉它什么结果能直接使用。</p>
       <div class="grid-2">
-        <div class="panel"><strong>不要只说</strong><span>帮我写一篇小红书文案。</span></div>
-        <div class="panel"><strong>要补上</strong><span>读者是谁、字数范围、语气、结构、不能写什么。</span></div>
-        <div class="panel"><strong>输出格式</strong><span>标题 5 个，正文 1 版，标签 8 个。</span></div>
-        <div class="panel"><strong>可用标准</strong><span>读者看完知道下一步怎么做。</span></div>
+        <div class="panel primary"><strong>主模块</strong><span>把任务拆成“对象、动作、格式、标准”。主模块面积更大，所以必须承载真正的方法，而不是只放一句口号。</span></div>
+        <div class="panel"><strong>对象</strong><span>给谁使用结果。</span></div>
+        <div class="panel"><strong>标准</strong><span>怎样算可直接用。</span></div>
       </div>
-      <div class="note">提示词不是咒语，是任务说明书。说明书越具体，返工越少。</div>
-      <div class="footer"><span>方法说明</span><span class="page-no">02 / 03</span></div>
+      <div class="note">大模块要有内部结构；没有内容支撑时，宁愿换成小模块。</div>
+      <div class="footer"><span>框架页</span><span class="page-no">02 / 05</span></div>
     </section>
 
-    <section class="card">
+    <section class="card layout-compare">
+      <div class="brand">Brand</div>
+      <div class="series">howto用好AI</div>
+      <h1 class="page-title">别把<span class="accent">总结</span>当成说明</h1>
+      <p class="lead">对比页适合讲清一个误区：同样一句话，左边是不可用表达，右边是可执行表达。</p>
+      <div class="grid-2">
+        <div class="panel bad"><strong>太空</strong><span>“建议进一步测试。”读者不知道测什么，也不知道为什么要测。</span></div>
+        <div class="panel good"><strong>可用</strong><span>“我没有跑登录失败分支。请执行 npm test -- auth-error。”</span></div>
+        <div class="panel"><strong>缺少证据</strong><span>没有命令、文件、截图或验收项支撑，就不要写成已完成。</span></div>
+        <div class="panel"><strong>下一步</strong><span>把建议落到一个检查项、一个命令或一个负责人的动作上。</span></div>
+      </div>
+      <div class="note">对比页的价值，是让读者看见“差在哪里”，不是再总结一遍。</div>
+      <div class="footer"><span>对比页</span><span class="page-no">03 / 05</span></div>
+    </section>
+
+    <section class="card layout-template">
       <div class="brand">Brand</div>
       <div class="series">howto用好AI</div>
       <h1 class="page-title">复制这个<span class="accent">填空模板</span></h1>
@@ -344,7 +430,23 @@
 判断结果可用的标准是【标准】。
 不要出现【禁区】。</div>
       <div class="note">如果 AI 第一次答偏了，不要只说“不对”。补一条标准，再让它重写。</div>
-      <div class="footer"><span>可复制模板</span><span class="page-no">03 / 03</span></div>
+      <div class="footer"><span>模板页</span><span class="page-no">04 / 05</span></div>
+    </section>
+
+    <section class="card layout-checklist">
+      <div class="brand">Brand</div>
+      <div class="series">howto用好AI</div>
+      <h1 class="page-title">出图前做<span class="accent">5 个检查</span></h1>
+      <p class="lead">清单页适合收尾：把读者下一步要做的判断写成可执行检查。</p>
+      <div class="checklist">
+        <div class="check"><b>1</b><span>这一页离开原文也能看懂吗？</span></div>
+        <div class="check"><b>2</b><span>最大的模块有没有足够内容支撑？</span></div>
+        <div class="check"><b>3</b><span>标题有没有压住正文或抢走配图空间？</span></div>
+        <div class="check"><b>4</b><span>底部有没有一大块无意义空白？</span></div>
+        <div class="check"><b>5</b><span>读者看完知道下一步怎么做吗？</span></div>
+      </div>
+      <div class="note">如果任一项不过，不要缩小字号硬塞，先换骨架或拆页。</div>
+      <div class="footer"><span>检查清单页</span><span class="page-no">05 / 05</span></div>
     </section>
   </main>
 </body>

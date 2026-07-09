@@ -14,6 +14,7 @@ Use a clear, restrained, engineered, trustworthy style by default. To change the
 Bundled resources:
 
 - `assets/template-xhs-cards.html`: starter HTML with fixed `1080 x 1440` `.card` elements.
+- `references/card-fit-and-layout.md`: density, page skeleton, and render rejection checks for 1080 x 1440 cards.
 - `scripts/export-cards.mjs`: export `.card` elements to PNG, build `contact-sheet.png`, zip PNGs, and write `export-report.json`.
 - `scripts/validate-cards.mjs`: validate rendered card size and PNG dimensions.
 
@@ -28,6 +29,18 @@ Before writing, identify:
 - Output stage: copy only, HTML only, export PNG, or review existing cards.
 
 If the user asks to review copy first, do not create HTML until they approve.
+
+## Layout Planning
+
+Before writing HTML, read `references/card-fit-and-layout.md`.
+
+For each card, decide:
+
+- Density: low, medium, high, or over capacity.
+- Skeleton: `layout-hero`, `layout-framework`, `layout-compare`, `layout-template`, or `layout-checklist`.
+- Space allocation: title, main module, support area, footer.
+
+If a card is over capacity, split it. If a card is low density, use a stronger title, visual anchor, flow line, or diagram instead of filler text.
 
 ## Content Rules
 
@@ -77,6 +90,8 @@ Avoid:
 - Generic filler blocks such as `task / boundary / format / standard`, unless that is the real method.
 - Large empty regions on the first card.
 - Making the series logo larger than the content title.
+- Decorative visuals that do not explain the topic.
+- Empty lower halves; use a flow line, anchor graphic, or meaningful support module instead.
 
 ## Content Page Rules
 
@@ -87,6 +102,9 @@ Avoid:
 - Prefer short blocks over paragraphs.
 - Explain terms before using them as conclusions.
 - When using a case, tell readers what the case is, what decision it contains, and how to reuse the decision.
+- Give the largest module enough content or internal structure to justify its space.
+- Do not stretch panels to fill empty areas.
+- Do not make every content card use the same skeleton.
 
 ## HTML And Export Rules
 
@@ -133,6 +151,7 @@ Before delivery, verify:
 - The card set teaches a complete point, not only a summary.
 - The cover title does not start with an unconnected series prefix such as `howto`.
 - Readers can understand each card without reading the original source.
+- Each card has a density and skeleton choice from `references/card-fit-and-layout.md`.
 - There are no placeholder names, paths, metrics, or fake references.
 - All `.card` elements render at `1080 x 1440`.
 - PNG export, contact sheet, zip, and report exist if export was requested.
